@@ -1,26 +1,30 @@
 package com.example.progmovileslab06.ui
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun CustomScaffold() {
+    val navController = rememberNavController()
+
     Scaffold(
-        // Barra superior
-        topBar = { CustomTopBar() },
-
-        // Barra inferior
+        topBar = { CustomTopBar(navController) },
         bottomBar = { CustomBottomBar() },
-
-        // Botón flotante personalizado
         floatingActionButton = { CustomFAB() },
-
-        // Contenido principal
         content = { padding ->
-            CustomContent(padding)
+            NavHost(
+                navController = navController,
+                startDestination = "home",
+                modifier = androidx.compose.ui.Modifier.padding(padding)
+            ) {
+                composable("home") { CustomContent(padding) }
+                composable("profile") { ProfileScreen() }
+            }
         }
     )
 }
-
-
 
