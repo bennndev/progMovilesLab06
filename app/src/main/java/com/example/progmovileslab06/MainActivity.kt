@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import com.example.progmovileslab06.ui.CustomScaffold
+import com.example.progmovileslab06.ui.scaffold.CustomScaffold
 import com.example.progmovileslab06.ui.theme.ProgMovilesLab06Theme
 
 class MainActivity : ComponentActivity() {
