@@ -10,30 +10,27 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CustomTopBar() {
+fun CustomTopBar(navController: NavController) {
     TopAppBar(
         navigationIcon = {
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(imageVector = Icons.Rounded.Menu, contentDescription = null)
+            IconButton(onClick = { /* TODO: abrir drawer si deseas */ }) {
+                Icon(Icons.Rounded.Menu, contentDescription = null)
             }
         },
         title = { Text(text = "Sample Title") },
         actions = {
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(
-                    imageVector = Icons.Rounded.Search,
-                    contentDescription = null
-                )
+            IconButton(onClick = { /* TODO: buscador */ }) {
+                Icon(Icons.Rounded.Search, contentDescription = null)
             }
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(
-                    imageVector = Icons.Outlined.AccountCircle,
-                    contentDescription = null
-                )
+            IconButton(onClick = {
+                navController.navigate("profile")
+            }) {
+                Icon(Icons.Outlined.AccountCircle, contentDescription = "Perfil de usuario")
             }
         }
     )
