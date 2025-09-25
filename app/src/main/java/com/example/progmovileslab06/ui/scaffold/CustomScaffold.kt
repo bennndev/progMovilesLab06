@@ -3,6 +3,10 @@ package com.example.progmovileslab06.ui.scaffold
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -17,17 +21,20 @@ import com.example.progmovileslab06.ui.screens.SettingsScreen
 fun CustomScaffold() {
     val navController = rememberNavController()
 
+
+    var fabClickCount by remember { mutableIntStateOf(0) }
+
     Scaffold(
         topBar = { CustomTopBar(navController) },
         bottomBar = { CustomBottomBar(navController) },
-        floatingActionButton = { CustomFAB() },
+        floatingActionButton = { CustomFAB { fabClickCount++ } },
         content = { padding ->
             NavHost(
                 navController = navController,
                 startDestination = "home",
                 modifier = Modifier.padding(padding)
             ) {
-                composable("home") { HomeScreen() }
+                composable("home") { CustomContent(padding, fabClickCount) }
                 composable("search") { SearchScreen() }
                 composable("notifications") { NotificationsScreen() }
                 composable("settings") { SettingsScreen() }

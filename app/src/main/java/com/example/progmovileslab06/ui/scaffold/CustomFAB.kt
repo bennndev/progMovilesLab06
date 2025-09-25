@@ -6,10 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun CustomFAB() {
-    FloatingActionButton(
-        onClick = { /*TODO*/ }
-    ) {
+fun CustomFAB(onClick: () -> Unit) {
+    FloatingActionButton(onClick = onClick) {
         Text(
             fontSize = 24.sp,
             text = "+"
